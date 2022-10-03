@@ -1,4 +1,4 @@
-import './assets/styles.css'
+import './assets/css/global.css'
 import { Header } from './components/Header'
 
 export function App() {
