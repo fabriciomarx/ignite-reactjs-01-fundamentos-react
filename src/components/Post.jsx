@@ -29,6 +29,7 @@ export function Post({ author, publishedAt, content }) {
     }
 
     function handleNewCommentChange(e) {
+        e.target.setCustomValidity('')
         setNewComment(e.target.value);
     }
 
@@ -41,6 +42,13 @@ export function Post({ author, publishedAt, content }) {
 
     }
 
+    function handleNewCommentInvalid(e) {
+     
+        e.target.setCustomValidity('Digite o campo obrigatório')
+    }
+
+    const isNewCommentEmpty = newComment.length === 0 
+    
     return (
        <article className={styles.post}>
         <header>
@@ -77,10 +85,12 @@ export function Post({ author, publishedAt, content }) {
                 name="comment"
                 placeholder="Deixe um comentário"
                 value={newComment}
+                onInvalid={handleNewCommentInvalid}
+                required
             />
 
             <footer>
-                <button type="submit">Publicar</button>
+                <button type="submit" disabled={isNewCommentEmpty}>Publicar</button>
             </footer>
         </form>
 
